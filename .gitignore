@@ -17,3 +17,4 @@ env/
 .DS_Store
 
 media/profile_pics/
+staticfiles/
