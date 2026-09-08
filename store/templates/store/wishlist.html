@@ -1,0 +1,393 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Wishlist | GlowStock</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fff8fc;
+            color: #641238;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 22px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f2dce7;
+        }
+
+        /* =========================
+           HOME PAGE STYLE LOGO
+        ========================= */
+
+        .logo {
+            text-decoration: none;
+            color: #641238;
+            display: block;
+        }
+
+        .logo-main {
+            font-family: Georgia, serif;
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .logo-main span {
+            color: #ff1985;
+        }
+
+        .logo-sub {
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: #641238;
+            margin-top: 6px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .header-links a {
+            text-decoration: none;
+            color: #641238;
+            font-size: 22px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-family: Georgia, serif;
+            font-size: 42px;
+            color: #641238;
+        }
+
+        .page-title p {
+            margin-top: 8px;
+            color: #8b526c;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .wishlist-card {
+            background: #ffffff;
+            border: 1px solid #f0dce6;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .wishlist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(100, 18, 56, 0.10);
+        }
+
+        .product-image {
+            height: 240px;
+            background: #fff5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .brand {
+            color: #ff1985;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            color: #641238;
+            font-size: 17px;
+            font-weight: bold;
+            min-height: 45px;
+        }
+
+        .price {
+            color: #ff1985;
+            font-size: 19px;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .bag-btn,
+        .remove-btn {
+            flex: 1;
+            padding: 11px 8px;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .bag-btn {
+            background: #641238;
+            color: white;
+        }
+
+        .remove-btn {
+            background: #fff0f6;
+            color: #641238;
+            border: 1px solid #f1cadb;
+        }
+
+        .empty {
+            text-align: center;
+            background: white;
+            border: 1px solid #f0dce6;
+            border-radius: 12px;
+            padding: 70px 20px;
+        }
+
+        .empty h2 {
+            font-family: Georgia, serif;
+            color: #641238;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .empty p {
+            color: #8b526c;
+            margin-bottom: 25px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            background: #641238;
+            color: white;
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 900px) {
+
+            .wishlist-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="/" class="logo">
+
+        <div class="logo-main">
+            Glow<span>Stock</span>
+        </div>
+
+        <div class="logo-sub">
+            BEAUTY BEYOND BOUNDARIES
+        </div>
+
+    </a>
+
+
+    <div class="header-links">
+
+        <a href="/shop/">
+            ⌕
+        </a>
+
+        <a href="/wishlist/">
+            ♡
+        </a>
+
+        <a href="/cart/">
+            🛍
+        </a>
+
+        <a href="/profile/">
+            👤
+        </a>
+
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <div class="page-title">
+
+        <h1>
+            My Wishlist
+        </h1>
+
+        <p>
+            Your favourite beauty products
+        </p>
+
+    </div>
+
+
+    {% if wishlist_items %}
+
+        <div class="wishlist-grid">
+
+            {% for item in wishlist_items %}
+
+                <div class="wishlist-card">
+
+                    <a href="{% url 'product_detail' item.product.slug %}">
+
+                        <div class="product-image">
+
+                            {% if item.product.image %}
+
+                                <img
+                                    src="{{ item.product.image.url }}"
+                                    alt="{{ item.product.name }}"
+                                >
+
+                            {% else %}
+
+                                <span>
+                                    No Image
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </a>
+
+
+                    <div class="product-info">
+
+                        <div class="brand">
+                            {{ item.product.brand }}
+                        </div>
+
+
+                        <div class="product-name">
+                            {{ item.product.name }}
+                        </div>
+
+
+                        <div class="price">
+                            ₹{{ item.product.discounted_price|floatformat:2 }}
+                        </div>
+
+
+                        <div class="buttons">
+
+                            <a
+                                href="{% url 'add_to_cart' item.product.slug %}"
+                                class="bag-btn"
+                            >
+                                Add to Bag
+                            </a>
+
+
+                            <a
+                                href="{% url 'remove_from_wishlist' item.product.slug %}"
+                                class="remove-btn"
+                            >
+                                Remove
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty">
+
+            <h2>
+                Your Wishlist is Empty
+            </h2>
+
+            <p>
+                You haven't added any products to your wishlist yet.
+            </p>
+
+            <a
+                href="/shop/"
+                class="shop-btn"
+            >
+                Continue Shopping
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

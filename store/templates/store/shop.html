@@ -1,0 +1,2016 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shop | GlowStock</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #fff8fc;
+        color: #641238;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+
+    /* =====================================================
+       TOP ANNOUNCEMENT BAR
+    ===================================================== */
+
+    .top-bar {
+        height: 42px;
+        background: #ff1985;
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 5%;
+
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .top-left,
+    .top-center,
+    .top-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .top-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .top-right {
+        gap: 12px;
+    }
+
+    .top-right a {
+        color: white;
+    }
+
+    .top-right span {
+        opacity: .8;
+    }
+
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    .navbar {
+        position: sticky;
+        top: 0;
+
+        z-index: 1000;
+
+        height: 86px;
+
+        /* SOFT LIGHT PINK HEADER */
+        background: #ffd6e8;
+
+        backdrop-filter: blur(14px);
+
+        border-bottom: 1px solid #f8dce9;
+
+        box-shadow: 0 3px 20px rgba(255,25,133,.07);
+    }
+
+    .nav-inner {
+        width: 90%;
+        max-width: 1250px;
+
+        height: 100%;
+
+        margin: auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 25px;
+    }
+
+
+    /* LOGO */
+
+    .logo {
+        font-family: Georgia, serif;
+
+        font-size: 34px;
+
+        font-weight: 800;
+
+        color: #ff1985;
+
+        line-height: 1;
+    }
+
+    .logo span {
+        color: #641238;
+    }
+
+
+    .logo small {
+        display: block;
+
+        font-family: Arial, Helvetica, sans-serif;
+
+        font-size: 9px;
+
+        letter-spacing: 2px;
+
+        color: #8b6878;
+
+        margin-top: 4px;
+
+        font-weight: 600;
+    }
+
+
+    /* NAV LINKS */
+
+    .nav-links {
+        display: flex;
+
+        align-items: center;
+
+        gap: 28px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+        font-weight: 700;
+        color: #641238;
+
+        transition: .25s ease;
+
+        position: relative;
+    }
+
+    .nav-links a::after {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        bottom: -7px;
+
+        width: 0;
+        height: 2px;
+
+        background: #ff1985;
+
+        transition: .25s ease;
+    }
+
+    .nav-links a:hover {
+        color: #ff1985;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+
+    /* NAV ACTIONS */
+
+    .nav-actions {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+    }
+
+
+    /* SEARCH */
+
+    .search-box {
+        width: 240px;
+        height: 42px;
+
+        display: flex;
+
+        border: 1px solid #f5bfd8;
+
+        border-radius: 25px;
+
+        overflow: hidden;
+
+        background: white;
+    }
+
+    .search-box input {
+        flex: 1;
+
+        border: none;
+
+        outline: none;
+
+        padding: 0 16px;
+
+        font-size: 13px;
+
+        color: #51283b;
+    }
+
+    .search-box input::placeholder {
+        color: #9b808c;
+    }
+
+    .search-button {
+        width: 52px;
+
+        border: none;
+
+        background: #ff1985;
+
+        color: white;
+
+        cursor: pointer;
+
+        font-size: 17px;
+
+        transition: .25s;
+    }
+
+    .search-button:hover {
+        background: #e91475;
+    }
+
+
+    /* ROUND BUTTONS */
+
+    .round-btn {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 50%;
+
+        border: 1px solid #f8d6e6;
+
+        background: #fff1f7;
+
+        cursor: pointer;
+
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        color: #ff1985;
+
+        font-size: 18px;
+
+        transition: .25s ease;
+    }
+
+    .round-btn:hover {
+        background: #ff1985;
+
+        color: white;
+
+        transform: translateY(-2px);
+    }
+
+
+    /* CART COUNT */
+
+    .cart-count {
+        position: absolute;
+
+        top: -5px;
+        right: -4px;
+
+        background: #ff1985;
+
+        color: white;
+
+        width: 18px;
+        height: 18px;
+
+        border-radius: 50%;
+
+        font-size: 10px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-weight: 800;
+    }
+
+
+    /* PROFILE */
+
+    .profile-btn {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 50%;
+
+        background: #fff1f7;
+
+        border: 1px solid #f8d6e6;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        color: #51283b;
+
+        font-size: 17px;
+
+        transition: .25s;
+    }
+
+    .profile-btn:hover {
+        background: #ff1985;
+
+        color: white;
+    }
+
+
+    /* =====================================================
+       SHOP HERO
+    ===================================================== */
+
+    .shop-hero {
+
+        padding: 78px 5% 75px;
+
+        text-align: center;
+
+        background:
+            radial-gradient(
+                circle at 90% 20%,
+                #ffd2e5,
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 10% 80%,
+                #ffe0ee,
+                transparent 25%
+            ),
+            linear-gradient(
+                135deg,
+                #fff8fc,
+                #ffe5f0
+            );
+    }
+
+    .shop-hero small {
+
+        color: #ff1985;
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        letter-spacing: 2px;
+
+        text-transform: uppercase;
+    }
+
+    .shop-hero h1 {
+        font-family: Georgia, serif;
+        font-size: 54px;
+        margin: 12px 0;
+        color: #641238;
+        font-weight: 700;
+    }
+
+    .shop-hero p {
+
+        color: #8b6878;
+
+        font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       MAIN
+    ===================================================== */
+
+    .shop-container {
+
+        width: 90%;
+
+        max-width: 1250px;
+
+        margin: auto;
+
+        padding: 55px 0 90px;
+    }
+
+
+    /* =====================================================
+       FILTER BAR
+    ===================================================== */
+
+    .filter-bar {
+
+        background: white;
+
+        border: 1px solid #f8d6e6;
+
+        border-radius: 20px;
+
+        padding: 18px;
+
+        margin-bottom: 35px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 14px;
+
+        flex-wrap: wrap;
+
+        box-shadow:
+            0 8px 25px rgba(255,25,133,.06);
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+
+        height: 43px;
+
+        border: 1px solid #f5bfd8;
+
+        border-radius: 22px;
+
+        background: #fff8fc;
+
+        padding: 0 16px;
+
+        outline: none;
+
+        color: #51283b;
+
+        font-size: 13px;
+    }
+
+    .filter-bar input:focus,
+    .filter-bar select:focus {
+
+        border-color: #ff1985;
+    }
+
+    .filter-search {
+
+        flex: 1;
+
+        min-width: 220px;
+    }
+
+    .filter-bar select {
+
+        min-width: 170px;
+    }
+
+    .filter-btn {
+
+        height: 43px;
+
+        padding: 0 23px;
+
+        border: none;
+
+        border-radius: 22px;
+
+        background: #ff1985;
+
+        color: white;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: .25s ease;
+    }
+
+    .filter-btn:hover {
+
+        background: #e91475;
+
+        transform: translateY(-2px);
+    }
+
+    .clear-btn {
+
+        font-size: 12px;
+
+        color: #ff1985;
+
+        font-weight: 700;
+
+        padding: 10px;
+    }
+
+    .clear-btn:hover {
+
+        text-decoration: underline;
+    }
+
+
+    /* =====================================================
+       SHOP HEADER
+    ===================================================== */
+
+    .shop-header {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-bottom: 25px;
+    }
+
+    .shop-header h2 {
+        font-family: Georgia, serif;
+        font-size: 30px;
+        color: #641238;
+    }
+
+    .product-count {
+
+        font-size: 13px;
+
+        color: #8b6878;
+    }
+
+
+    /* =====================================================
+       PRODUCTS
+    ===================================================== */
+
+    .product-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 24px;
+    }
+
+    .product-card {
+
+        background: white;
+
+        border: 1px solid #f7d8e7;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        transition: .35s ease;
+
+        position: relative;
+    }
+
+    .product-card:hover {
+
+        transform: translateY(-7px);
+
+        box-shadow:
+            0 18px 35px rgba(255,25,133,.15);
+    }
+
+    .product-image {
+
+        height: 255px;
+
+        background:
+            linear-gradient(
+                145deg,
+                #ffe0ee,
+                #fff1f7
+            );
+
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+
+    /* =====================================================
+       FIXED PRODUCT IMAGE LINK
+    ===================================================== */
+
+    .product-image > a.product-detail-link {
+
+        display: block;
+
+        width: 100%;
+
+        height: 100%;
+
+        position: relative;
+
+        z-index: 1;
+    }
+
+
+    .product-image img {
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        transition: .5s;
+
+        display: block;
+    }
+
+    .product-card:hover img {
+
+        transform: scale(1.07);
+    }
+
+    .placeholder {
+
+        width: 100%;
+
+        height: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 60px;
+    }
+
+
+    /* DISCOUNT */
+
+    .discount {
+
+        position: absolute;
+
+        left: 12px;
+
+        top: 12px;
+
+        background: #ff1985;
+
+        color: white;
+
+        border-radius: 20px;
+
+        padding: 6px 10px;
+
+        font-size: 10px;
+
+        font-weight: 800;
+
+        z-index: 5;
+    }
+
+
+    /* HEART */
+
+    .heart {
+
+        position: absolute;
+
+        right: 12px;
+
+        top: 12px;
+
+        width: 36px;
+
+        height: 36px;
+
+        border: none;
+
+        border-radius: 50%;
+
+        background: rgba(255,255,255,.94);
+
+        color: #ff1985;
+
+        font-size: 18px;
+
+        cursor: pointer;
+
+        transition: .25s ease;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        z-index: 10;
+    }
+
+    .heart:hover {
+
+        background: #ff1985;
+
+        color: white;
+
+        transform: scale(1.08);
+    }
+
+    .heart.active {
+        background: #ff1985;
+        color: white;
+    }
+
+
+    /* PRODUCT INFO */
+
+    .product-info {
+
+        padding: 18px;
+    }
+
+    .brand {
+
+        font-size: 10px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1px;
+
+        color: #ff1985;
+
+        font-weight: 800;
+    }
+
+    .product-info h3 {
+
+        font-size: 16px;
+
+        margin: 6px 0;
+
+        color: #641238;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+    .rating {
+
+        font-size: 12px;
+
+        color: #b17b40;
+
+        margin-bottom: 13px;
+    }
+
+    .price-row {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+    }
+
+    .price {
+        font-size: 17px;
+        font-weight: 800;
+        color: #641238;
+    }
+
+    .old-price {
+
+        font-size: 11px;
+
+        color: #b9a1aa;
+
+        text-decoration: line-through;
+
+        margin-left: 5px;
+    }
+
+    .bag-btn {
+
+        width: 39px;
+
+        height: 39px;
+
+        border: none;
+
+        border-radius: 50%;
+
+        background: #ffe0ee;
+
+        color: #ff1985;
+
+        cursor: pointer;
+
+        font-size: 20px;
+
+        transition: .3s;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+
+    .bag-btn:hover {
+
+        background: #ff1985;
+
+        color: white;
+
+        transform: scale(1.08);
+    }
+
+    .out-stock {
+
+        font-size: 11px;
+
+        color: #ff1985;
+
+        font-weight: 700;
+    }
+
+
+    /* =====================================================
+       EMPTY
+    ===================================================== */
+
+    .empty {
+
+        text-align: center;
+
+        padding: 80px 20px;
+
+        background: white;
+
+        border: 1px solid #f7d8e7;
+
+        border-radius: 25px;
+    }
+
+    .empty-icon {
+
+        font-size: 55px;
+
+        margin-bottom: 15px;
+    }
+
+    .empty h3 {
+
+        font-family: Georgia, serif;
+
+        font-size: 25px;
+
+        margin-bottom: 8px;
+
+        color: #3a1829;
+    }
+
+    .empty p {
+
+        color: #8b6878;
+
+        font-size: 13px;
+    }
+
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    .toast {
+
+        position: fixed;
+
+        right: 25px;
+
+        bottom: 25px;
+
+        background: #641238;
+
+        color: white;
+
+        padding: 14px 20px;
+
+        border-radius: 12px;
+
+        opacity: 0;
+
+        transform: translateY(80px);
+
+        transition: .35s;
+
+        z-index: 2000;
+
+        font-size: 13px;
+    }
+
+    .toast.show {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+
+        background: #641238;
+
+        color: white;
+
+        padding: 55px 5% 25px;
+    }
+
+    .footer-inner {
+
+        max-width: 1250px;
+
+        margin: auto;
+    }
+
+    .footer-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            2fr 1fr 1fr 1fr;
+
+        gap: 40px;
+    }
+
+    .footer-logo {
+
+        font-family: Georgia, serif;
+
+        color: #ff9bc6;
+
+        font-size: 32px;
+
+        font-weight: 800;
+
+        margin-bottom: 14px;
+    }
+
+    .footer-about {
+
+        color: #e9c8d8;
+
+        font-size: 13px;
+
+        line-height: 1.8;
+
+        max-width: 350px;
+    }
+
+    .footer-col h3 {
+
+        font-size: 14px;
+
+        margin-bottom: 17px;
+
+        color: white;
+    }
+
+    .footer-col a {
+
+        display: block;
+
+        color: #e9c8d8;
+
+        font-size: 12px;
+
+        margin-bottom: 11px;
+
+        transition: .2s;
+    }
+
+    .footer-col a:hover {
+
+        color: white;
+    }
+
+    .footer-bottom {
+
+        border-top:
+            1px solid rgba(255,255,255,.15);
+
+        margin-top: 40px;
+
+        padding-top: 20px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        color: #d8b1c5;
+
+        font-size: 11px;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media(max-width:1100px) {
+
+        .nav-links {
+            gap: 18px;
+        }
+
+        .search-box {
+            width: 180px;
+        }
+
+        .product-grid {
+            grid-template-columns:
+                repeat(3,1fr);
+        }
+    }
+
+
+    @media(max-width:850px) {
+
+        .top-center {
+            display: none;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .search-box {
+            width: 190px;
+        }
+
+        .product-grid {
+            grid-template-columns:
+                repeat(2,1fr);
+        }
+
+        .footer-grid {
+            grid-template-columns:
+                repeat(2,1fr);
+        }
+    }
+
+
+    @media(max-width:600px) {
+
+        .top-bar {
+            justify-content: center;
+
+            font-size: 11px;
+        }
+
+        .top-right {
+            display: none;
+        }
+
+        .navbar {
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 26px;
+        }
+
+        .logo small {
+            font-size: 7px;
+        }
+
+        .search-box {
+            display: none;
+        }
+
+        .round-btn,
+        .profile-btn {
+            width: 38px;
+            height: 38px;
+        }
+
+        .shop-hero {
+            padding: 60px 5%;
+        }
+
+        .shop-hero h1 {
+            font-size: 42px;
+        }
+
+        .shop-hero p {
+            font-size: 14px;
+        }
+
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .filter-search {
+            min-width: 100%;
+        }
+
+        .filter-bar select {
+            width: 100%;
+        }
+
+        .filter-btn {
+            width: 100%;
+        }
+
+        .shop-header {
+            align-items: flex-start;
+
+            gap: 10px;
+
+            flex-direction: column;
+        }
+
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
+
+<div class="top-bar">
+
+
+<div class="top-left">
+    ✨ Free Delivery on orders above ₹799
+</div>
+
+<div class="top-center">
+    💖 Glow beautifully, every day!
+</div>
+
+<div class="top-right">
+
+    <a href="#">
+        Track Order
+    </a>
+
+    <span>|</span>
+
+    <a href="#">
+        Help & Support
+    </a>
+
+    <span>|</span>
+
+    <a href="#">
+        ✨ Offers
+    </a>
+
+</div>
+
+
+</div>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+
+<div class="nav-inner">
+
+
+    <!-- LOGO -->
+
+    <a href="/" class="logo">
+
+        Glow<span>Stock</span>
+
+        <small>
+            BEAUTY BEYOND BOUNDARIES
+        </small>
+
+    </a>
+
+
+    <!-- NAV LINKS -->
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/shop/">
+            Shop
+        </a>
+
+        <a href="/#categories">
+            Categories
+        </a>
+
+        <a href="/#bestsellers">
+            Best Sellers
+        </a>
+
+        <a href="/#new-arrivals">
+            New Arrivals
+        </a>
+
+        <a href="/#offers">
+            Offers
+        </a>
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="nav-actions">
+
+
+        <!-- SEARCH -->
+
+        <form
+            action="/shop/"
+            method="GET"
+            class="search-box"
+        >
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search products..."
+                value="{{ search }}"
+            >
+
+            <button
+                type="submit"
+                class="search-button"
+            >
+                🔍
+            </button>
+
+        </form>
+
+
+        <!-- WISHLIST -->
+
+        <a
+            href="/wishlist/"
+            class="round-btn"
+            title="Wishlist"
+            onclick="showToast('Wishlist 💗')"
+        >
+            ♡
+        </a>
+
+
+        <!-- CART -->
+
+        <a
+            href="/cart/"
+            class="round-btn"
+            title="Cart"
+        >
+
+            🛍
+
+            <span
+                class="cart-count"
+                id="cartCount"
+            >
+                0
+            </span>
+
+        </a>
+
+
+        <!-- PROFILE -->
+
+        {% if user.is_authenticated %}
+
+            <a
+                href="/profile/"
+                class="profile-btn"
+                title="Profile"
+            >
+                👤
+            </a>
+
+        {% else %}
+
+            <a
+                href="/login/"
+                class="profile-btn"
+                title="Login"
+            >
+                👤
+            </a>
+
+        {% endif %}
+
+
+    </div>
+
+</div>
+
+
+</nav>
+
+<!-- =====================================================
+     SHOP HERO
+===================================================== -->
+
+<section class="shop-hero">
+
+
+<small>
+    ♡ GLOWSTOCK BEAUTY STORE ♡
+</small>
+
+<h1>
+    Shop Your Glow
+</h1>
+
+<p>
+    Discover makeup, skincare, haircare,
+    fragrance and body care.
+</p>
+
+
+</section>
+
+<!-- =====================================================
+     SHOP
+===================================================== -->
+
+<main class="shop-container">
+
+
+<!-- FILTER BAR -->
+
+<form
+    method="GET"
+    class="filter-bar"
+>
+
+
+    <input
+        class="filter-search"
+        type="text"
+        name="search"
+        value="{{ search }}"
+        placeholder="Search products or brands..."
+    >
+
+
+    <select name="category">
+
+        <option value="">
+            All Categories
+        </option>
+
+        {% for category in categories %}
+
+            <option
+                value="{{ category.slug }}"
+                {% if selected_category == category.slug %}
+                    selected
+                {% endif %}
+            >
+
+                {{ category.name }}
+
+            </option>
+
+        {% endfor %}
+
+    </select>
+
+
+    <select name="sort">
+
+        <option value="">
+            Sort By
+        </option>
+
+        <option
+            value="price_low"
+            {% if selected_sort == "price_low" %}
+                selected
+            {% endif %}
+        >
+            Price: Low to High
+        </option>
+
+        <option
+            value="price_high"
+            {% if selected_sort == "price_high" %}
+                selected
+            {% endif %}
+        >
+            Price: High to Low
+        </option>
+
+        <option
+            value="rating"
+            {% if selected_sort == "rating" %}
+                selected
+            {% endif %}
+        >
+            Highest Rated
+        </option>
+
+    </select>
+
+
+    <button
+        class="filter-btn"
+        type="submit"
+    >
+        Apply Filters
+    </button>
+
+
+    <a
+        href="/shop/"
+        class="clear-btn"
+    >
+        Clear
+    </a>
+
+
+</form>
+
+
+<!-- SHOP HEADER -->
+
+<div class="shop-header">
+
+    <h2>
+        All Products
+    </h2>
+
+    <span class="product-count">
+
+        Showing {{ products|length }} products
+
+    </span>
+
+</div>
+
+
+<!-- PRODUCTS -->
+
+{% if products %}
+
+    <div class="product-grid">
+
+
+        {% for product in products %}
+
+            <div class="product-card">
+
+
+                <!-- IMAGE -->
+
+                <div class="product-image">
+
+
+                    {% if product.image %}
+
+                        <!-- FIXED: PRODUCT IMAGE IS CLICKABLE -->
+
+                        <a
+                            href="{% url 'product_detail' product.slug %}"
+                            class="product-detail-link"
+                        >
+
+                            <img
+                                src="{{ product.image.url }}"
+                                alt="{{ product.name }}"
+                            >
+
+                        </a>
+
+                    {% else %}
+
+                        <!-- FIXED: PLACEHOLDER IS ALSO CLICKABLE -->
+
+                        <a
+                            href="{% url 'product_detail' product.slug %}"
+                            class="product-detail-link"
+                        >
+
+                            <div class="placeholder">
+
+                                {% if product.category.name == "Makeup" %}
+
+                                    💄
+
+                                {% elif product.category.name == "Skincare" %}
+
+                                    🧴
+
+                                {% elif product.category.name == "Haircare" %}
+
+                                    💇‍♀️
+
+                                {% elif product.category.name == "Fragrance" %}
+
+                                    🌸
+
+                                {% else %}
+
+                                    🛁
+
+                                {% endif %}
+
+                            </div>
+
+                        </a>
+
+                    {% endif %}
+
+
+                    <!-- DISCOUNT -->
+
+                    {% if product.discount > 0 %}
+
+                        <span class="discount">
+
+                            {{ product.discount }}% OFF
+
+                        </span>
+
+                    {% endif %}
+
+
+                    <!-- HEART -->
+
+                    {% if user.is_authenticated %}
+
+                        {% if product.id in wishlist_product_ids %}
+
+                            <a
+                                href="{% url 'remove_from_wishlist' product.slug %}"
+                                class="heart active"
+                                title="Remove from Wishlist"
+                            >
+
+                                ♥
+
+                            </a>
+
+                        {% else %}
+
+                            <a
+                                href="{% url 'add_to_wishlist' product.slug %}"
+                                class="heart"
+                                title="Add to Wishlist"
+                            >
+
+                                ♡
+
+                            </a>
+
+                        {% endif %}
+
+                    {% else %}
+
+                        <a
+                            href="/login/?next=/shop/"
+                            class="heart"
+                            title="Login to add Wishlist"
+                        >
+
+                            ♡
+
+                        </a>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                <!-- PRODUCT INFO -->
+
+                <div class="product-info">
+
+
+                    <span class="brand">
+
+                        {{ product.brand }}
+
+                    </span>
+
+
+                    <h3 title="{{ product.name }}">
+
+                        {{ product.name }}
+
+                    </h3>
+
+
+                    <div class="rating">
+
+                        ★ {{ product.rating }}
+
+                    </div>
+
+
+                    <div class="price-row">
+
+
+                        <div>
+
+                            <span class="price">
+
+                                ₹{{ product.discounted_price|floatformat:0 }}
+
+                            </span>
+
+
+                            {% if product.discount > 0 %}
+
+                                <span class="old-price">
+
+                                    ₹{{ product.price|floatformat:0 }}
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                        {% if product.stock > 0 %}
+
+                            <a
+                                href="{% url 'add_to_cart' product.slug %}"
+                                class="bag-btn"
+                                title="Add to Cart"
+                            >
+
+                                +
+
+                            </a>
+
+                        {% else %}
+
+                            <span class="out-stock">
+
+                                Out of stock
+
+                            </span>
+
+                        {% endif %}
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        {% endfor %}
+
+
+    </div>
+
+
+{% else %}
+
+
+    <!-- EMPTY -->
+
+    <div class="empty">
+
+        <div class="empty-icon">
+
+            🔎
+
+        </div>
+
+        <h3>
+
+            No beauty products found
+
+        </h3>
+
+        <p>
+
+            Try another search or category.
+
+        </p>
+
+    </div>
+
+
+{% endif %}
+
+
+</main>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+<div class="footer-inner">
+
+
+    <div class="footer-grid">
+
+
+        <!-- ABOUT -->
+
+        <div>
+
+            <div class="footer-logo">
+
+                GlowStock ✨
+
+            </div>
+
+
+            <p class="footer-about">
+
+                Beauty Beyond Boundaries.
+                Discover makeup, skincare,
+                haircare, fragrance and body
+                care essentials curated for
+                your everyday glow.
+
+            </p>
+
+
+        </div>
+
+
+        <!-- SHOP -->
+
+        <div class="footer-col">
+
+            <h3>
+
+                Shop
+
+            </h3>
+
+            <a href="/shop/">
+
+                All Products
+
+            </a>
+
+            <a href="/shop/?category=makeup">
+
+                Makeup
+
+            </a>
+
+            <a href="/shop/?category=skincare">
+
+                Skincare
+
+            </a>
+
+            <a href="/shop/?category=haircare">
+
+                Haircare
+
+            </a>
+
+        </div>
+
+
+        <!-- HELP -->
+
+        <div class="footer-col">
+
+            <h3>
+
+                Help
+
+            </h3>
+
+            <a href="#">
+
+                Contact Us
+
+            </a>
+
+            <a href="#">
+
+                Shipping
+
+            </a>
+
+            <a href="#">
+
+                Returns
+
+            </a>
+
+            <a href="#">
+
+                FAQ
+
+            </a>
+
+        </div>
+
+
+        <!-- ACCOUNT -->
+
+        <div class="footer-col">
+
+            <h3>
+
+                My Account
+
+            </h3>
+
+            <a href="/profile/">
+
+                Profile
+
+            </a>
+
+            <a href="/orders/">
+
+                My Orders
+
+            </a>
+
+            <a href="/wishlist/">
+
+                Wishlist
+
+            </a>
+
+            <a href="/cart/">
+
+                Cart
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+
+            © 2026 GlowStock. All rights reserved.
+
+        </span>
+
+        <span>
+
+            Made with 💗 for beauty lovers.
+
+        </span>
+
+    </div>
+
+
+</div>
+
+
+</footer>
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    let cartCount = 0;
+
+    let toastTimer;
+
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById("toast");
+
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+
+        toastTimer =
+            setTimeout(function() {
+
+                toast.classList.remove("show");
+
+            }, 2200);
+    }
+
+
+    function addToCart(productName) {
+
+        cartCount++;
+
+        document.getElementById("cartCount")
+            .textContent = cartCount;
+
+        showToast(
+            productName +
+            " added to your bag 🛍️"
+        );
+    }
+
+</script>
+
+</body>
+
+</html>
